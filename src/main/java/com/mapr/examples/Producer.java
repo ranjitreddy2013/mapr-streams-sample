@@ -1,12 +1,13 @@
 package com.mapr.examples;
 
-import com.google.common.io.Resources;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerRecord;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+
+import com.google.common.io.Resources;
+
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 
 /**
  * This producer will send a bunch of messages to topic "fast-messages". Every so often,
@@ -17,8 +18,8 @@ import java.util.Properties;
 public class Producer {
     public static void main(String[] args) throws IOException {
 
-        final String TOPIC_FAST_MESSAGES = "/sample-stream:fast-messages";
-        final String TOPIC_SUMMARY_MARKERS = "/sample-stream:summary-markers";
+        final String TOPIC_FAST_MESSAGES = "/user/ranjitlingaiah/sample-stream:fast-messages";
+        final String TOPIC_SUMMARY_MARKERS = "/user/ranjitlingaiah/sample-stream:summary-markers";
 
         // set up the producer
         KafkaProducer<String, String> producer;

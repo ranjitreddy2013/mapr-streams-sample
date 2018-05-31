@@ -1,19 +1,19 @@
 package com.mapr.examples;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.io.Resources;
-import org.HdrHistogram.Histogram;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.clients.producer.KafkaProducer;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Properties;
 import java.util.Random;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.io.Resources;
+
+import org.HdrHistogram.Histogram;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 /**
  * This program reads messages from two topics. Messages on "fast-messages" are analyzed
@@ -28,8 +28,8 @@ public class Consumer {
         Histogram stats = new Histogram(1, 10000000, 2);
         Histogram global = new Histogram(1, 10000000, 2);
 
-        final String TOPIC_FAST_MESSAGES = "/sample-stream:fast-messages";
-        final String TOPIC_SUMMARY_MARKERS = "/sample-stream:summary-markers";
+        final String TOPIC_FAST_MESSAGES = "/user/ranjitlingaiah/sample-stream:fast-messages";
+        final String TOPIC_SUMMARY_MARKERS = "/user/ranjitlingaiah/sample-stream:summary-markers";
 
         // and the consumer
         KafkaConsumer<String, String> consumer;
@@ -62,8 +62,8 @@ public class Consumer {
                         switch (msg.get("type").asText()) {
                             case "test":
                                 long latency = (long) ((System.nanoTime() * 1e-9 - msg.get("t").asDouble()) * 1000);
-                                stats.recordValue(latency);
-                                global.recordValue(latency);
+                //                stats.recordValue(latency);
+                 //               global.recordValue(latency);
                                 break;
                             case "marker":
                                 // whenever we get a marker message, we should dump out the stats
